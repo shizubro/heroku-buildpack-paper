@@ -39,10 +39,6 @@ case $limit in
   ;;
 esac
 
-echo "Building Spigot"
-git config --global --unset core.autocrlf
-java -jar BuildTools.jar --rev 1.11
-
 echo "Starting: minecraft ${mc_port}"
 eval "screen -L -h 2048 -dmS minecraft java -Xms500m -Xmx900m -XX:+UseConcMarkSweepGC -jar spigot.jar"
 main_pid=$!
