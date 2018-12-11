@@ -5,9 +5,9 @@
     
     curl -X POST https://content.dropboxapi.com/2/files/upload \
         --header "Authorization: Bearer ${DB_TOKEN}" \
-        --header "Dropbox-API-Arg: {\"path\": \"/world.tar.gz\"}" \
+        --header "Dropbox-API-Arg: {\"path\": \"/world.tar.gz\",\"mode\": \"add\",\"overwrite\": true,\"mute\": false,\"strict_conflict\": false}" \
         --header "Content-Type: application/octet-stream" \
-        --data-binary @world.tag.gz
+        --data-binary @world.tar.gz
   else
     curl -O -X POST https://content.dropboxapi.com/2/files/download \
         --header "Authorization: Bearer ${DB_TOKEN}" \
