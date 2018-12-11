@@ -66,6 +66,7 @@ minecraft_version=${MINECRAFT_VERSION:-"1.11"}
 
 echo -n "-----> Installing Spigot ${minecraft_version}... "
 wget https://cdn.getbukkit.org/spigot/spigot-1.11.jar
+mv spigot-1.11.jar $BUILD_DIR/spigot-1.11.jar
 
 
 if [ -n "${MINECRAFT_EULA:-""}" ]; then
