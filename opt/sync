@@ -14,4 +14,6 @@
         --header "Authorization: Bearer ${DB_TOKEN}" \
         --header "Dropbox-API-Arg: {\"path\": \"/world.zip\"}"
     unzip world.zip
+    
+    echo "$(ls)"
   fi
