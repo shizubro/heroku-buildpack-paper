@@ -15,7 +15,7 @@
       "description": "Your personal ngrok API token",
       "required": true
     },
-    "OAUTH_TOKEN": {
+    "DB_TOKEN": {
       "description": "The OAUTH token for Dropbox",
       "required": false
     }
