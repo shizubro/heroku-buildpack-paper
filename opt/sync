@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
   if [ -d world ]; then
-    tar -czvf world.tar.gz world & sleep 30s && curl -X POST https://content.dropboxapi.com/2/files/upload \
+    tar -czvf world.tar.gz world & wait $!
+    curl -X POST https://content.dropboxapi.com/2/files/upload \
         --header "Authorization: Bearer ${DB_TOKEN}" \
         --header "Dropbox-API-Arg: {\"path\": \"/world.tar.gz\",\"mode\": \"overwrite\",\"autorename\": false,\"mute\": false,\"strict_conflict\": false}" \
         --header "Content-Type: application/octet-stream" \
@@ -10,5 +11,7 @@
     curl -X POST https://content.dropboxapi.com/2/files/download \
         --header "Authorization: Bearer ${DB_TOKEN}" \
         --header "Dropbox-API-Arg: {\"path\": \"/world.tar.gz\"}" \
-        --output "world.tar.gz" & sleep 1m && tar -xzvf world.tar.gz && echo "$(ls)"
+        --output "world.tar.gz" & wait $!
+    tar -xzvf world.tar.gz  & wait $!
+    echo "$(ls)"
   fi
