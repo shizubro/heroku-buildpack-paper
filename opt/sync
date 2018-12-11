@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
   if [ -d world ]; then
-    zip -r world.zip world
-    echo "some content here" > world.zip
+    zip -r world.zip world && echo "some content here" > world.zip
     
     curl -X POST https://content.dropboxapi.com/2/files/upload \
         --header "Authorization: Bearer ${DB_TOKEN}" \
