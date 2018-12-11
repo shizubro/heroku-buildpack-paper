@@ -12,5 +12,5 @@
     curl -O -X POST https://content.dropboxapi.com/2/files/download \
         --header "Authorization: Bearer ${DB_TOKEN}" \
         --header "Dropbox-API-Arg: {\"path\": \"/world.tar.gz\"}"
-    tar -xzvf download.tar.gz && echo "$(ls)"
+    tar -xzvf download && echo "$(ls)"
   fi
