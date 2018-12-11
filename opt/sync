@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-oauth_token = ${DB_TOKEN}
   if [ -d world ]; then
     zip -r world.zip world
     echo "some content here" > world.zip
