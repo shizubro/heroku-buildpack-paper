@@ -50,7 +50,7 @@ git config --global --unset core.autocrlf
 java -jar BuildTools.jar --rev 1.11
 
 echo "Starting: minecraft ${mc_port}"
-java -Xms500m -Xmx900m -XX:+UseConcMarkSweepGC -jar spigot.jar
+eval "java -Xms500m -Xmx900m -XX:+UseConcMarkSweepGC -jar spigot.jar"
 main_pid=$!
 
 trap "kill $ngrok_pid $main_pid $sync_pid $tail_pid" SIGTERM
