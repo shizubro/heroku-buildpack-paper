@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
   if [ -d world ]; then
-    zip -r world.zip world && echo "some content here" > world.zip
+    tar -czvf world.tar.gz world && echo "some content here" > world.tar.gz
     
     curl -X POST https://content.dropboxapi.com/2/files/upload \
         --header "Authorization: Bearer ${DB_TOKEN}" \
-        --header "Dropbox-API-Arg: {\"path\": \"/world.zip\"}" \
+        --header "Dropbox-API-Arg: {\"path\": \"/world.tar.gz\"}" \
         --header "Content-Type: application/octet-stream" \
-        --data-binary @world.zip
+        --data-binary @world.tag.gz
   else
     curl -O -X POST https://content.dropboxapi.com/2/files/download \
         --header "Authorization: Bearer ${DB_TOKEN}" \
-        --header "Dropbox-API-Arg: {\"path\": \"/world.zip\"}"
-    unzip world.zip && echo "$(ls)"
+        --header "Dropbox-API-Arg: {\"path\": \"/world.tar.gz\"}"
+    tar -xzvf download.tar.gz && echo "$(ls)"
   fi
