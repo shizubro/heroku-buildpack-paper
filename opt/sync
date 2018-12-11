@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
-if [ -n "$AWS_BUCKET" ]; then
-  cat << EOF > .s3cfg
-[default]
-access_key = ${AWS_ACCESS_KEY}
-secret_key = ${AWS_SECRET_KEY}
-EOF
+oauth_token = ${DB_TOKEN}
   if [ -d world ]; then
-    s3cmd sync world/ s3://${AWS_BUCKET}/world/
+    zip -r world.zip world
+    echo "some content here" > world.zip
+    
+    curl -X POST https://content.dropboxapi.com/2/files/upload \
+        --header "Authorization: Bearer ${DB_TOKEN}" \
+        --header "Dropbox-API-Arg: {\"path\": \"/world.zip\"}" \
+        --header "Content-Type: application/octet-stream" \
+        --data-binary @world.zip
   else
-    mkdir -p world
-    cd world
-    s3cmd get --recursive s3://${AWS_BUCKET}/world/
-    cd ..
+    curl -O -X POST https://content.dropboxapi.com/2/files/download \
+        --header "Authorization: Bearer ${DB_TOKEN}" \
+        --header "Dropbox-API-Arg: {\"path\": \"/world.zip\"}"
+    unzip world.zip
   fi
-  rm .s3cfg
-fi
