@@ -64,10 +64,10 @@ echo "done"
 
 minecraft_version=${MINECRAFT_VERSION:-"1.13"}
 
+
 echo -n "-----> Installing Spigot ${minecraft_version}... "
-wget https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
-git config --global --unset core.autocrlf
-java -jar BuildTools.jar --rev 1.13
+wget https://cdn.getbukkit.org/spigot/spigot-1.11.jar
+
 
 if [ -n "${MINECRAFT_EULA:-""}" ]; then
   echo -n "-----> Accepting Minecraft EULA... "
