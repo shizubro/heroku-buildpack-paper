@@ -5,12 +5,13 @@
     
     curl -X POST https://content.dropboxapi.com/2/files/upload \
         --header "Authorization: Bearer ${DB_TOKEN}" \
-        --header "Dropbox-API-Arg: {\"path\": \"/world.tar.gz\",\"mode\": \"add\",\"overwrite\": true,\"mute\": false,\"strict_conflict\": false}" \
+        --header "Dropbox-API-Arg: {\"path\": \"/world.tar.gz\",\"mode\": \"overwrite\",\"autorename\": false,\"mute\": false,\"strict_conflict\": false}" \
         --header "Content-Type: application/octet-stream" \
         --data-binary @world.tar.gz
   else
-    curl -O -X POST https://content.dropboxapi.com/2/files/download \
+    curl -X POST https://content.dropboxapi.com/2/files/download \
         --header "Authorization: Bearer ${DB_TOKEN}" \
-        --header "Dropbox-API-Arg: {\"path\": \"/world.tar.gz\"}"
-    tar -xzvf download && echo "$(ls)"
+        --header "Dropbox-API-Arg: {\"path\": \"/world.tar.gz\"}" \
+        --output "world.tar.gz"
+    tar -xzvf world.tar.gz && echo "$(ls)"
   fi
