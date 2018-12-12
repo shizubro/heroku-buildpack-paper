@@ -10,7 +10,7 @@
     tar -czvf plugins.tar.gz plugins & wait $!
     curl -X POST https://content.dropboxapi.com/2/files/upload \
         --header "Authorization: Bearer ${DB_TOKEN}" \
-        --header "Dropbox-API-Arg: {\"path\": \"/world.tar.gz\",\"mode\": \"overwrite\",\"autorename\": false,\"mute\": false,\"strict_conflict\": false}" \
+        --header "Dropbox-API-Arg: {\"path\": \"/plugins.tar.gz\",\"mode\": \"overwrite\",\"autorename\": false,\"mute\": false,\"strict_conflict\": false}" \
         --header "Content-Type: application/octet-stream" \
         --data-binary @plugins.tar.gz && echo "plugins upload successful"
   else
@@ -21,7 +21,7 @@
     tar -xzvf world.tar.gz  & wait $!
     curl -X POST https://content.dropboxapi.com/2/files/download \
         --header "Authorization: Bearer ${DB_TOKEN}" \
-        --header "Dropbox-API-Arg: {\"path\": \"/world.tar.gz\"}" \
+        --header "Dropbox-API-Arg: {\"path\": \"/plugins.tar.gz\"}" \
         --output "plugins.tar.gz" & wait $!
     tar -xzvf plugins.tar.gz  & wait $!
     echo "$(ls)"
