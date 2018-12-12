@@ -40,7 +40,7 @@ case $limit in
 esac
 
 echo "Starting: minecraft ${mc_port}"
-eval "screen -L -h 2048 -dmS minecraft java -Xms500m -Xmx900m -XX:+UseConcMarkSweepGC -jar spigot-1.13.2.jar"
+eval "screen -L -h 2048 -dmS minecraft java -Xms500m -Xmx768m -XX:+UseConcMarkSweepGC -jar spigot-1.13.2.jar"
 main_pid=$!
 
 # Flush the logfile every second, and ensure that the logfile exists
