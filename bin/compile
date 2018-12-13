@@ -65,8 +65,8 @@ echo "done"
 minecraft_version=${MINECRAFT_VERSION:-"1.13.2"}
 
 echo -n "-----> Installing Spigot ${minecraft_version}... "
-wget https://cdn.getbukkit.org/spigot/spigot-1.13.2.jar
-mv spigot-1.13.2.jar $BUILD_DIR/spigot-1.13.2.jar
+wget https://papermc.io/ci/job/Paper-1.13/lastSuccessfulBuild/artifact/paperclip.jar
+mv paperclip.jar $BUILD_DIR/paperclip.jar
 
 
 if [ -n "${MINECRAFT_EULA:-""}" ]; then
